@@ -18,7 +18,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onDataReset }) => {
 
   const verifyHealth = async () => {
     const health = await checkBackendHealth();
-    if (health.status === "healthy") {
+    if (health.status === "active" || health.status === "healthy") {
       setBackendStatus("online");
       if (health.gemini_model) setGeminiModel(health.gemini_model);
     } else {

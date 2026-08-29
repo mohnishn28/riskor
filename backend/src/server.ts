@@ -9,16 +9,6 @@ dotenv.config();
 
 const app: Express = express();
 const PORT = process.env.PORT || 4000;
-// Root health check endpoint for Render & Vercel polling
-app.get('/', (req, res) => {
-  res.status(200).json({ status: 'active', service: 'Riskor Backend Engine' });
-});
-app.get('/api/v1/status', (req, res) => {
-  res.status(200).json({ status: 'active', timestamp: new Date() });
-});
-app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'ok' });
-});
 
 // Enable CORS for Next.js frontend
 app.use(
@@ -35,10 +25,10 @@ app.use(express.json());
 // Initialize store with rich demonstration dataset
 TransactionStore.initializeWithSeedData();
 
-// Root health check endpoint
-app.get("/health", (_req: Request, res: Response) => {
-  res.json({
-    status: "healthy",
+// Service status endpoint (bypasses adblocker keyword filters)
+app.get(["/api/v1/status", "/status"], (_req: Request, res: Response) => {
+  res.status(200).json({
+    status: "active",
     system: "Riskor - Razorpay Payment Fraud Defense Engine",
     version: "1.0.0",
     gemini_model: process.env.GEMINI_MODEL || "gemini-2.5-flash",

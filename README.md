@@ -123,7 +123,7 @@ npm run dev
 | `GET` | `/api/v1/transactions` | Real-time list of evaluated transaction events |
 | `GET` | `/api/v1/stats` | Aggregated dashboard KPI metrics (Fraud blocked, FPR, latency) |
 | `POST` | `/api/v1/reset` | Reseeds mock dataset with clean and adversary transactions |
-| `GET` | `/health` | Live service health check & Gemini model configuration state |
+| `GET` | `/api/v1/status` | Live service status & Gemini model configuration state |
 
 ---
 

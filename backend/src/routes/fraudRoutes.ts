@@ -10,6 +10,21 @@ import { v4 as uuidv4 } from "uuid";
 const router = Router();
 
 /**
+ * 0. GET /api/v1/status
+ * Service status endpoint
+ */
+router.get("/status", (_req: Request, res: Response): void => {
+  res.status(200).json({
+    status: "active",
+    system: "Riskor - Razorpay Payment Fraud Defense Engine",
+    version: "1.0.0",
+    gemini_model: process.env.GEMINI_MODEL || "gemini-2.5-flash",
+    gemini_key_configured: Boolean(process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== "your_gemini_api_key_here"),
+    timestamp: new Date().toISOString(),
+  });
+});
+
+/**
  * 1. POST /api/v1/score
  * Lightweight deterministic statistical risk scoring
  */

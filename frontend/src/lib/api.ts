@@ -2,10 +2,17 @@ import { TransactionPayload, MLScoreBreakdown, EvaluationResult, DashboardStats 
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:4000";
 
-export async function checkBackendHealth(): Promise<{ status: string; gemini_model?: string; gemini_key_configured?: boolean }> {
+export async function checkBackendHealth(): Promise<{
+  status: string;
+  system?: string;
+  version?: string;
+  gemini_model?: string;
+  gemini_key_configured?: boolean;
+  timestamp?: string;
+}> {
   try {
-    const res = await fetch(`${BACKEND_URL}/health`, { cache: "no-store" });
-    if (!res.ok) throw new Error("Health check failed");
+    const res = await fetch(`${BACKEND_URL}/api/v1/status`, { cache: "no-store" });
+    if (!res.ok) throw new Error("Status check failed");
     return await res.json();
   } catch (err) {
     return { status: "offline" };

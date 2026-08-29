@@ -9,6 +9,14 @@ dotenv.config();
 
 const app: Express = express();
 const PORT = process.env.PORT || 4000;
+// Root health check endpoint for Render & Vercel polling
+app.get('/', (req, res) => {
+  res.status(200).json({ status: 'active', service: 'Riskor Backend Engine' });
+});
+
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
 
 // Enable CORS for Next.js frontend
 app.use(

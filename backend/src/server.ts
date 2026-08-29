@@ -13,7 +13,9 @@ const PORT = process.env.PORT || 4000;
 app.get('/', (req, res) => {
   res.status(200).json({ status: 'active', service: 'Riskor Backend Engine' });
 });
-
+app.get('/api/v1/status', (req, res) => {
+  res.status(200).json({ status: 'active', timestamp: new Date() });
+});
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });

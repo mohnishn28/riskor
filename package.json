@@ -1,0 +1,23 @@
+{
+  "name": "riskor-monorepo",
+  "version": "1.0.0",
+  "description": "Riskor - Autonomous AI Payment Fraud Defense System for Razorpay AI Buildathon",
+  "scripts": {
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:backend": "npm --prefix backend run build",
+    "build:frontend": "npm --prefix frontend run build",
+    "build": "npm run build:backend && npm run build:frontend",
+    "test": "npm --prefix backend test"
+  },
+  "keywords": [
+    "razorpay",
+    "fraud-defense",
+    "gemini",
+    "ai-agent",
+    "chargeback-defense",
+    "fintech"
+  ],
+  "author": "Razorpay AI Buildathon Team",
+  "license": "MIT"
+}
